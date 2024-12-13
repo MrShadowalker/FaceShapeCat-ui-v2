@@ -4,13 +4,13 @@ import { useMessage } from "/@/hooks/web/useMessage";
 const { createConfirm } = useMessage();
 
 enum Api {
-  list = '/nekoCustomInfo/nekoCustomInfo/list',
-  save='/nekoCustomInfo/nekoCustomInfo/add',
-  edit='/nekoCustomInfo/nekoCustomInfo/edit',
-  deleteOne = '/nekoCustomInfo/nekoCustomInfo/delete',
-  deleteBatch = '/nekoCustomInfo/nekoCustomInfo/deleteBatch',
-  importExcel = '/nekoCustomInfo/nekoCustomInfo/importExcel',
-  exportXls = '/nekoCustomInfo/nekoCustomInfo/exportXls',
+  list = '/customer/nekoCustomerInfo/list',
+  save='/customer/nekoCustomerInfo/add',
+  edit='/customer/nekoCustomerInfo/edit',
+  deleteOne = '/customer/nekoCustomerInfo/delete',
+  deleteBatch = '/customer/nekoCustomerInfo/deleteBatch',
+  importExcel = '/customer/nekoCustomerInfo/importExcel',
+  exportXls = '/customer/nekoCustomerInfo/exportXls',
 }
 
 /**

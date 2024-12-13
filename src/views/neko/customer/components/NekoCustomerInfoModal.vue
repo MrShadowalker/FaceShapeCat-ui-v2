@@ -1,12 +1,12 @@
 <template>
   <j-modal :title="title" :width="width" :visible="visible" @ok="handleOk" :okButtonProps="{ class: { 'jee-hidden': disableSubmit } }" @cancel="handleCancel" cancelText="关闭">
-    <NekoCustomInfoForm ref="registerForm" @ok="submitCallback" :formDisabled="disableSubmit" :formBpm="false"></NekoCustomInfoForm>
+    <NekoCustomerInfoForm ref="registerForm" @ok="submitCallback" :formDisabled="disableSubmit" :formBpm="false"></NekoCustomerInfoForm>
   </j-modal>
 </template>
 
 <script lang="ts" setup>
   import { ref, nextTick, defineExpose } from 'vue';
-  import NekoCustomInfoForm from './NekoCustomInfoForm.vue'
+  import NekoCustomerInfoForm from './NekoCustomerInfoForm.vue'
   import JModal from '/@/components/Modal/src/JModal/JModal.vue';
   
   const title = ref<string>('');

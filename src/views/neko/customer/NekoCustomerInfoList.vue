@@ -38,7 +38,7 @@
             <a-col :lg="6">
               <a-form-item name="birthday">
                 <template #label><span title="生日">生日</span></template>
-                <a-range-picker showTime value-format="YYYY-MM-DD HH:mm:ss" v-model:value="queryParam.birthday" class="query-group-cust"/>
+                <a-range-picker value-format="YYYY-MM-DD"  v-model:value="queryParam.birthday" class="query-group-cust"/>
               </a-form-item>
             </a-col>
             <a-col :lg="6">
@@ -103,9 +103,12 @@
     <BasicTable @register="registerTable" :rowSelection="rowSelection">
       <!--插槽:table标题-->
       <template #tableTitle>
-        <a-button type="primary" v-auth="'nekoCustomInfo:neko_custom_info:add'"  @click="handleAdd" preIcon="ant-design:plus-outlined"> 新增</a-button>
-        <a-button  type="primary" v-auth="'nekoCustomInfo:neko_custom_info:exportXls'" preIcon="ant-design:export-outlined" @click="onExportXls"> 导出</a-button>
-        <j-upload-button  type="primary" v-auth="'nekoCustomInfo:neko_custom_info:importExcel'"  preIcon="ant-design:import-outlined" @click="onImportXls">导入</j-upload-button>
+<!--        <a-button type="primary" v-auth="'customer:neko_customer_info:add'"  @click="handleAdd" preIcon="ant-design:plus-outlined"> 新增</a-button>-->
+<!--        <a-button  type="primary" v-auth="'customer:neko_customer_info:exportXls'" preIcon="ant-design:export-outlined" @click="onExportXls"> 导出</a-button>-->
+<!--        <j-upload-button  type="primary" v-auth="'customer:neko_customer_info:importExcel'"  preIcon="ant-design:import-outlined" @click="onImportXls">导入</j-upload-button>-->
+        <a-button type="primary" @click="handleAdd" preIcon="ant-design:plus-outlined"> 新增</a-button>
+        <a-button  type="primary" preIcon="ant-design:export-outlined" @click="onExportXls"> 导出</a-button>
+        <j-upload-button  type="primary" preIcon="ant-design:import-outlined" @click="onImportXls">导入</j-upload-button>
         <a-dropdown v-if="selectedRowKeys.length > 0">
           <template #overlay>
             <a-menu>
@@ -115,7 +118,8 @@
               </a-menu-item>
             </a-menu>
           </template>
-          <a-button v-auth="'nekoCustomInfo:neko_custom_info:deleteBatch'">批量操作
+<!--          <a-button v-auth="'customer:neko_customer_info:deleteBatch'">批量操作-->
+          <a-button >批量操作
             <Icon icon="mdi:chevron-down"></Icon>
           </a-button>
         </a-dropdown>
@@ -130,18 +134,18 @@
       </template>
     </BasicTable>
     <!-- 表单区域 -->
-    <NekoCustomInfoModal ref="registerModal" @success="handleSuccess"></NekoCustomInfoModal>
+    <NekoCustomerInfoModal ref="registerModal" @success="handleSuccess"></NekoCustomerInfoModal>
   </div>
 </template>
 
-<script lang="ts" name="nekoCustomInfo-nekoCustomInfo" setup>
+<script lang="ts" name="customer-nekoCustomerInfo" setup>
   import { ref, reactive } from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useListPage } from '/@/hooks/system/useListPage';
-  import { columns, superQuerySchema } from './NekoCustomInfo.data';
-  import { list, deleteOne, batchDelete, getImportUrl, getExportUrl } from './NekoCustomInfo.api';
+  import { columns, superQuerySchema } from './NekoCustomerInfo.data';
+  import { list, deleteOne, batchDelete, getImportUrl, getExportUrl } from './NekoCustomerInfo.api';
   import { downloadFile } from '/@/utils/common/renderUtils';
-  import NekoCustomInfoModal from './components/NekoCustomInfoModal.vue'
+  import NekoCustomerInfoModal from './components/NekoCustomerInfoModal.vue'
   import { useUserStore } from '/@/store/modules/user';
   import JSelectMultiple from '/@/components/Form/src/jeecg/components/JSelectMultiple.vue';
   import JSearchSelect from '/@/components/Form/src/jeecg/components/JSearchSelect.vue';
@@ -156,7 +160,7 @@
   //注册table数据
   const { prefixCls, tableContext, onExportXls, onImportXls } = useListPage({
     tableProps: {
-      title: '顾客信息',
+      title: '顾客相关信息',
       api: list,
       columns,
       canResize:false,
@@ -171,7 +175,7 @@
       },
     },
     exportConfig: {
-      name: "顾客信息",
+      name: "顾客相关信息",
       url: getExportUrl,
       params: queryParam,
     },
@@ -258,7 +262,7 @@
       {
         label: '编辑',
         onClick: handleEdit.bind(null, record),
-        auth: 'nekoCustomInfo:neko_custom_info:edit'
+        auth: 'customer:neko_customer_info:edit'
       },
     ];
   }
@@ -278,7 +282,7 @@
           confirm: handleDelete.bind(null, record),
           placement: 'topLeft',
         },
-        auth: 'nekoCustomInfo:neko_custom_info:delete'
+        auth: 'customer:neko_customer_info:delete'
       }
     ]
   }

@@ -33,7 +33,11 @@ export const columns: BasicColumn[] = [
   {
     title: '生日',
     align: "center",
-    dataIndex: 'birthday'
+    dataIndex: 'birthday',
+    customRender:({text}) =>{
+      text = !text ? "" : (text.length > 10 ? text.substr(0,10) : text);
+      return text;
+    },
   },
   {
     title: '头像',
@@ -84,8 +88,8 @@ export const superQuerySchema = {
   nickName: {title: '昵称',order: 1,view: 'text', type: 'string',},
   phoneNum: {title: '电话',order: 2,view: 'text', type: 'string',},
   wechatNum: {title: '微信号',order: 3,view: 'text', type: 'string',},
-  gender: {title: '性别',order: 4,view: 'radio', type: 'string',dictCode: '',},
-  birthday: {title: '生日',order: 5,view: 'datetime', type: 'string',},
+  gender: {title: '性别',order: 4,view: 'number', type: 'number',dictCode: '',},
+  birthday: {title: '生日',order: 5,view: 'date', type: 'string',},
   avatar: {title: '头像',order: 6,view: 'image', type: 'string',},
   source: {title: '来源',order: 7,view: 'list', type: 'string',dictCode: '',},
   subSource: {title: '子来源',order: 8,view: 'radio', type: 'string',dictCode: '',},
