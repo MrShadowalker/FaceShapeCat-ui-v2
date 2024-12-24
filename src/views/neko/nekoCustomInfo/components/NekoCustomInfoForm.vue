@@ -51,12 +51,12 @@
 						</a-col>
 						<a-col :span="12">
 							<a-form-item label="跟踪员工ID" v-bind="validateInfos.employeeId" id="NekoCustomInfoForm-employeeId" name="employeeId">
-						<j-select-user v-model:value="formData.employeeId"      allow-clear />
+						    <j-select-user v-model:value="formData.employeeId"      allow-clear />
 							</a-form-item>
 						</a-col>
 						<a-col :span="12">
 							<a-form-item label="咨询顾问员工ID" v-bind="validateInfos.consultantId" id="NekoCustomInfoForm-consultantId" name="consultantId">
-						<j-select-user v-model:value="formData.consultantId"      allow-clear />
+						    <j-select-user v-model:value="formData.consultantId"      allow-clear />
 							</a-form-item>
 						</a-col>
 						<a-col :span="12">
