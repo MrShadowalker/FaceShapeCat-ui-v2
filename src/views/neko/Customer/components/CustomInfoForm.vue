@@ -211,7 +211,7 @@ const validatorRules = reactive({
 
 
   async function wechatNumDuplicatevalidate(_r, value) {
-    return duplicateValidate('neko_custom_info', 'wechat_num', value, formData.id || '')
+    return duplicateValidate('neko_customer_info', 'wechat_num', value, formData.id || '')
   }
   defineExpose({
     add,
